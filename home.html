@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Prathamesh Mestry — Software Engineer & Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0d0d0d;
+    --black2:   #181818;
+    --black3:   #232323;
+    --white:    #ffffff;
+    --offwhite: #f9f8f6;
+    --orange:   #f46b1b;
+    --orange2:  #ff8c42;
+    --orange-light: #fff3eb;
+    --blue:     #1a56db;
+    --blue2:    #2563eb;
+    --blue-light: #eff6ff;
+    --gray:     #6b7280;
+    --gray2:    #9ca3af;
+    --border:   #e5e7eb;
+    --border-dark: #2e2e2e;
+    --serif:  'Playfair Display', serif;
+    --sans:   'Outfit', sans-serif;
+    --r:      8px;
+    --r2:     14px;
+    --sh:     0 2px 12px rgba(0,0,0,0.07);
+    --sh2:    0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--black); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: var(--black);
+    height: 64px;
+    display: flex; align-items: center;
+  }
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; padding: 0 40px;
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark {
+    width: 36px; height: 36px; background: var(--orange);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .nav-logo-text { font-family: var(--sans); font-size: 16px; font-weight: 600; color: var(--white); letter-spacing: 0.2px; }
+
+  .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.6); text-decoration: none;
+    font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+  .nav-cta {
+    background: var(--orange); color: #fff;
+    padding: 9px 22px; border-radius: var(--r);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--orange2); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+
+  /* MOBILE MENU */
+  .mob-menu {
+    display: none; position: fixed; inset: 0; background: var(--black);
+    z-index: 300; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  }
+  .mob-menu.open { display: flex; }
+  .mob-menu a { font-family: var(--serif); font-size: 30px; color: var(--white); text-decoration: none; }
+  .mob-menu a:hover { color: var(--orange); }
+  .mob-close { position: absolute; top: 20px; right: 28px; background: none; border: none; color: var(--gray2); font-size: 28px; cursor: pointer; line-height: 1; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--black);
+    padding: 0 40px;
+    min-height: calc(100vh - 64px);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+
+  /* Background decoration */
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -80px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(244,107,27,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(26,86,219,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1160px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center;
+    padding: 80px 0;
+    position: relative; z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(244,107,27,0.4);
+    background: rgba(244,107,27,0.08);
+    color: var(--orange2);
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 500; margin-bottom: 24px;
+  }
+  .hero-tag-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(42px, 5.5vw, 72px);
+    line-height: 1.05; letter-spacing: -1px; color: var(--white); margin-bottom: 8px;
+  }
+  .hero h1 .accent { color: var(--orange); }
+
+  .hero-subtitle {
+    font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px; margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 15px; color: rgba(255,255,255,0.55);
+    line-height: 1.8; max-width: 480px; margin-bottom: 36px;
+  }
+
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+  .hchip {
+    font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-orange { background: var(--orange); color: #fff; border: none; padding: 13px 28px; border-radius: var(--r); font-family: var(--sans); font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-orange:hover { background: var(--orange2); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,107,27,0.35); }
+  .btn-outline-w { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 13px 28px; border-radius: var(--r); font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-outline-w:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+  /* HERO RIGHT — CARD */
+  .hero-right { display: flex; flex-direction: column; gap: 16px; }
+
+  .profile-card {
+    background: var(--black2); border: 1px solid var(--border-dark);
+    border-radius: var(--r2); padding: 28px;
+    position: relative; overflow: hidden;
+  }
+  .profile-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--blue2));
+  }
+
+  .profile-avatar {
+    width: 94px; height: 94px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), var(--blue2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 24px; color: #fff; font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .profile-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .profile-role { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 16px; }
+
+  .profile-loc {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    padding: 8px 0; border-top: 1px solid var(--border-dark);
+  }
+
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .stat-box {
+    background: var(--black2); border: 1px solid var(--border-dark);
+    border-radius: var(--r); padding: 18px 14px; text-align: center;
+  }
+  .stat-box-val { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--white); line-height: 1; }
+  .stat-box-val span { color: var(--orange); }
+  .stat-box-lbl { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  /* ─── SECTION WRAPPER ─── */
+  .sec { padding: 80px 40px; }
+  .sec-dark { background: var(--black); }
+  .sec-light { background: var(--white); }
+  .sec-off { background: var(--offwhite); }
+  .sec-inner { max-width: 1160px; margin: 0 auto; }
+
+  .sec-top { margin-bottom: 48px; }
+  .sec-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .ey-orange { color: var(--orange); }
+  .ey-blue { color: var(--blue2); }
+  .ey-white { color: var(--orange); }
+
+  .sec-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); line-height: 1.1; letter-spacing: -0.5px; }
+  .title-dark { color: var(--black); }
+  .title-white { color: var(--white); }
+
+  /* ─── EXPERIENCE ─── */
+  .exp-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .exp-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--r2); padding: 32px 32px;
+    display: grid; grid-template-columns: 1fr auto; gap: 24px;
+    box-shadow: var(--sh); transition: box-shadow 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .exp-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; border-radius: 4px 0 0 4px;
+  }
+  .ec-blue::before { background: var(--blue2); }
+  .ec-orange::before { background: var(--orange); }
+  .ec-black::before { background: var(--black); }
+
+  .exp-card:hover { box-shadow: var(--sh2); transform: translateY(-2px); }
+
+  .exp-header { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  .exp-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .ei-blue { background: var(--blue-light); }
+  .ei-orange { background: var(--orange-light); }
+  .ei-black { background: var(--offwhite); }
+
+  .exp-role { font-family: var(--serif); font-size: 22px; color: var(--black); margin-bottom: 2px; }
+  .exp-dur { font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
+  .exp-dur-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray2); }
+
+  .exp-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+  .ep {
+    font-size: 12px; font-weight: 500; padding: 5px 11px; border-radius: 6px;
+  }
+  .ep-blue { background: var(--blue-light); color: var(--blue2); border: 1px solid #bfdbfe; }
+  .ep-orange { background: var(--orange-light); color: #c2440f; border: 1px solid #fed7aa; }
+  .ep-dark { background: var(--offwhite); color: var(--black3); border: 1px solid var(--border); }
+
+  .exp-badge {
+    align-self: start; font-size: 11px; font-weight: 700;
+    padding: 5px 14px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .eb-blue { background: var(--blue-light); color: var(--blue2); }
+  .eb-orange { background: var(--orange-light); color: #c2440f; }
+  .eb-dark { background: var(--offwhite); color: var(--black); border: 1px solid var(--border); }
+
+  /* ─── DARK STRIP ─── */
+  .strip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+  .strip-left h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+  .strip-left h2 em { color: var(--orange); font-style: normal; }
+  .strip-left p { color: rgba(255,255,255,0.5); font-size: 15px; line-height: 1.8; }
+
+  .strip-right { display: flex; flex-direction: column; gap: 20px; }
+  .strip-stat-row {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 24px; border-radius: var(--r2);
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border-dark);
+  }
+  .ssn { font-family: var(--serif); font-size: 38px; font-weight: 700; line-height: 1; color: var(--white); min-width: 72px; }
+  .ssn .ospan { color: var(--orange); }
+  .ss-label { font-size: 14px; font-weight: 600; color: var(--white); }
+  .ss-sub { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+  /* ─── SKILLS ─── */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .skill-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--r2); padding: 28px; box-shadow: var(--sh);
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .skill-card:hover { box-shadow: var(--sh2); transform: translateY(-2px); }
+
+  .sk-head {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  }
+  .sk-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .ski-blue { background: var(--blue-light); }
+  .ski-orange { background: var(--orange-light); }
+  .ski-dark { background: var(--offwhite); }
+
+  .sk-name { font-size: 15px; font-weight: 700; color: var(--black); }
+
+  .sk-items { display: flex; flex-direction: column; gap: 14px; }
+  .sk-item { display: flex; flex-direction: column; gap: 6px; }
+  .sk-row { display: flex; justify-content: space-between; align-items: center; }
+  .sk-label { font-size: 13px; color: var(--black); font-weight: 500; }
+  .sk-pct { font-size: 12px; color: var(--gray); font-weight: 600; }
+  .sk-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .sk-fill { height: 100%; border-radius: 99px; width: 0; transition: width 1.3s cubic-bezier(0.4,0,0.2,1); }
+  .skf-blue { background: linear-gradient(90deg, var(--blue), var(--blue2)); }
+  .skf-orange { background: linear-gradient(90deg, var(--orange), var(--orange2)); }
+  .skf-dark { background: linear-gradient(90deg, var(--black3), #555); }
+
+  /* ─── PROJECTS ─── */
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .proj-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--r2); padding: 28px; box-shadow: var(--sh);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: box-shadow 0.25s, transform 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .proj-card:hover { box-shadow: var(--sh2); transform: translateY(-3px); }
+
+  .proj-card-top {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  }
+  .proj-icon2 {
+    width: 46px; height: 46px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+  }
+  .pib { background: var(--blue-light); }
+  .pig { background: var(--orange-light); }
+  .pip { background: var(--offwhite); }
+
+  .proj-badge2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+  .pb-blue { background: var(--blue-light); color: var(--blue2); }
+  .pb-orange { background: var(--orange-light); color: #c2440f; }
+  .pb-dark { background: var(--offwhite); color: var(--black); border: 1px solid var(--border); }
+
+  .proj-title2 { font-family: var(--serif); font-size: 19px; color: var(--black); }
+  .proj-sub2 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray2); margin-bottom: 2px; }
+  .proj-desc2 { font-size: 13px; color: var(--gray); line-height: 1.7; flex: 1; }
+  .proj-tags2 { display: flex; flex-wrap: wrap; gap: 5px; }
+  .ptag2 { font-size: 11px; padding: 3px 9px; border-radius: 5px; background: var(--offwhite); color: var(--gray); border: 1px solid var(--border); }
+  .proj-link2 { font-size: 13px; color: var(--blue2); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; }
+  .proj-link2:hover { color: var(--orange); }
+
+  /* ─── CONTACT ─── */
+  .contact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+  .cl-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+  .cl-title { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 42px); color: var(--white); line-height: 1.15; margin-bottom: 14px; }
+  .cl-title em { color: var(--orange); font-style: normal; }
+  .cl-desc { color: rgba(255,255,255,0.5); font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
+
+  .c-items { display: flex; flex-direction: column; gap: 10px; }
+  .c-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-dark); border-radius: var(--r);
+    color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px;
+    transition: all 0.2s;
+  }
+  .c-item:hover { border-color: var(--orange); color: var(--white); background: rgba(244,107,27,0.06); }
+  .c-item-icon {
+    width: 36px; height: 36px; background: rgba(244,107,27,0.12);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0;
+  }
+
+  .form-wrap { background: var(--white); border-radius: var(--r2); padding: 32px; box-shadow: var(--sh2); }
+  .form-title { font-family: var(--serif); font-size: 20px; color: var(--black); margin-bottom: 20px; }
+  .form-grid { display: flex; flex-direction: column; gap: 14px; }
+  .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fg { display: flex; flex-direction: column; gap: 5px; }
+  label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); }
+  input, textarea {
+    background: var(--offwhite); border: 1.5px solid var(--border);
+    border-radius: var(--r); color: var(--black);
+    padding: 11px 14px; font-family: var(--sans); font-size: 14px; outline: none; width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus, textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(244,107,27,0.1); background: var(--white); }
+  textarea { min-height: 110px; resize: vertical; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black); border-top: 1px solid var(--border-dark);
+    padding: 28px 40px;
+  }
+  .footer-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-left { display: flex; align-items: center; gap: 10px; }
+  .footer-mark {
+    width: 28px; height: 28px; background: var(--orange); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 13px; color: #fff; font-weight: 700;
+  }
+  .footer-name { font-size: 14px; color: rgba(255,255,255,0.5); }
+  .footer-right { font-size: 13px; color: rgba(255,255,255,0.3); }
+  .footer-right a { color: var(--orange); text-decoration: none; }
+
+  /* ─── DIVIDER ─── */
+  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--orange), var(--blue2), transparent); opacity: 0.3; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1000px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .hero-right { display: none; }
+    .strip-grid { grid-template-columns: 1fr; gap: 40px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .proj-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .sec { padding: 56px 24px; }
+    .hero { padding: 0 24px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .contact-split { grid-template-columns: 1fr; gap: 36px; }
+    .form-row2 { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 1fr; }
+    footer { padding: 24px; }
+    .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">P</div>
+      <span class="nav-logo-text">Prathamesh Mestry</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:prathameshmestry23502@gmail.com" class="nav-cta">Hire Me</a>
+    <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMenu()">✕</button>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span>Available for opportunities</div>
+      <h1>Software Engineer<br>&amp; <span class="accent">Product</span><br>Manager</h1>
+      <p class="hero-subtitle">Navi Mumbai, Maharashtra</p>
+      <p class="hero-desc">2+ years of experience building full-stack web applications, managing enterprise network security, and leading cross-functional product &amp; project teams from planning to delivery.</p>
+      <div class="hero-chips">
+        <span class="hchip">MERN Stack</span>
+        <span class="hchip">Django</span>
+        <span class="hchip">ERPNext</span>
+        <span class="hchip">FortiGate</span>
+        <span class="hchip">Fortinet VPN</span>
+        <span class="hchip">Product Strategy</span>
+        <span class="hchip">Agile / Scrum</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-orange">View My Work</a>
+        <a href="#contact" class="btn-outline-w">Get In Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="profile-card">
+        <div class="profile-avatar">PM</div>
+        <div class="profile-name">Prathamesh Mestry</div>
+        <div class="profile-role">Software Engineer · Project Manager · Product Manager</div>
+        <div class="profile-loc">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Navi Mumbai, Maharashtra, India
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-box-val">2<span>.7</span></div>
+          <div class="stat-box-lbl">Yrs Exp</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val"><span>3</span></div>
+          <div class="stat-box-lbl">Roles</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val"><span>6</span></div>
+          <div class="stat-box-lbl">Projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE ─── -->
+<section class="sec sec-light" id="experience">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <p class="sec-eyebrow ey-orange">Career Journey</p>
+      <h2 class="sec-title title-dark">Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-card ec-blue reveal">
+        <div>
+          <div class="exp-header">
+            <div class="exp-icon ei-blue">💻</div>
+            <div>
+              <div class="exp-role">Software Engineer</div>
+              <div class="exp-dur">Full-time <span class="exp-dur-dot"></span> 1 Year 3 Months</div>
+            </div>
+          </div>
+          <div class="exp-pills">
+            <span class="ep ep-blue">React.js</span>
+            <span class="ep ep-blue">Node.js</span>
+            <span class="ep ep-blue">Express.js</span>
+            <span class="ep ep-blue">MongoDB</span>
+            <span class="ep ep-blue">Django</span>
+            <span class="ep ep-blue">ERPNext</span>
+            <span class="ep ep-blue">REST APIs</span>
+            <span class="ep ep-blue">FortiGate Firewall</span>
+            <span class="ep ep-blue">Fortinet VPN</span>
+            <span class="ep ep-blue">Linux</span>
+            <span class="ep ep-blue">Git</span>
+          </div>
+        </div>
+        <span class="exp-badge eb-blue">Engineering</span>
+      </div>
+
+      <div class="exp-card ec-orange reveal">
+        <div>
+          <div class="exp-header">
+            <div class="exp-icon ei-orange">📊</div>
+            <div>
+              <div class="exp-role">Project Manager</div>
+              <div class="exp-dur">Full-time <span class="exp-dur-dot"></span> 1 Year</div>
+            </div>
+          </div>
+          <div class="exp-pills">
+            <span class="ep ep-orange">Team Leadership</span>
+            <span class="ep ep-orange">Project Planning</span>
+            <span class="ep ep-orange">Stakeholder Coordination</span>
+            <span class="ep ep-orange">Budget Management</span>
+            <span class="ep ep-orange">API Integrations</span>
+            <span class="ep ep-orange">Risk Management</span>
+            <span class="ep ep-orange">Delivery Management</span>
+            <span class="ep ep-orange">Jira / Trello</span>
+          </div>
+        </div>
+        <span class="exp-badge eb-orange">Management</span>
+      </div>
+
+      <div class="exp-card ec-black reveal">
+        <div>
+          <div class="exp-header">
+            <div class="exp-icon ei-black">🚀</div>
+            <div>
+              <div class="exp-role">Product Manager</div>
+              <div class="exp-dur">Full-time <span class="exp-dur-dot"></span> 4 Months</div>
+            </div>
+          </div>
+          <div class="exp-pills">
+            <span class="ep ep-dark">Product Strategy</span>
+            <span class="ep ep-dark">Feature Prioritization</span>
+            <span class="ep ep-dark">Sprint Management</span>
+            <span class="ep ep-dark">Enhancement Planning</span>
+            <span class="ep ep-dark">Product Roadmapping</span>
+            <span class="ep ep-dark">User Story Writing</span>
+            <span class="ep ep-dark">Backlog Grooming</span>
+          </div>
+        </div>
+        <span class="exp-badge eb-dark">Product</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── DARK STRIP ─── -->
+<section class="sec sec-dark">
+  <div class="sec-inner">
+    <div class="strip-grid">
+      <div class="strip-left reveal">
+        <h2>Engineering depth.<br><em>Product</em> clarity.</h2>
+        <p>A rare combination — someone who can write the code, manage the team, and own the product roadmap. Prathamesh brings technical understanding to product decisions and product clarity to engineering work.</p>
+      </div>
+      <div class="strip-right reveal">
+        <div class="strip-stat-row">
+          <div class="ssn">1.3</div>
+          <div>
+            <div class="ss-label">Years · Software Engineer</div>
+            <div class="ss-sub">MERN · Django · ERPNext · Fortinet</div>
+          </div>
+        </div>
+        <div class="strip-stat-row">
+          <div class="ssn"><span class="ospan">1</span></div>
+          <div>
+            <div class="ss-label">Year · Project Manager</div>
+            <div class="ss-sub">Teams · Budget · Delivery</div>
+          </div>
+        </div>
+        <div class="strip-stat-row">
+          <div class="ssn"><span class="ospan">4</span></div>
+          <div>
+            <div class="ss-label">Months · Product Manager</div>
+            <div class="ss-sub">Strategy · Sprints · Roadmap</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── SKILLS ─── -->
+<section class="sec sec-off" id="skills">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <p class="sec-eyebrow ey-blue">Expertise</p>
+      <h2 class="sec-title title-dark">Skills &amp; Capabilities</h2>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card reveal reveal-d1">
+        <div class="sk-head">
+          <div class="sk-icon ski-blue">⚙️</div>
+          <div class="sk-name">Engineering</div>
+        </div>
+        <div class="sk-items">
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">React.js / Node.js</span><span class="sk-pct">85%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-blue" data-pct="85"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">MongoDB / Express.js</span><span class="sk-pct">82%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-blue" data-pct="82"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Django / Python</span><span class="sk-pct">80%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-blue" data-pct="80"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">ERPNext</span><span class="sk-pct">78%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-blue" data-pct="78"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">REST API Design</span><span class="sk-pct">85%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-blue" data-pct="85"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Git / Version Control</span><span class="sk-pct">88%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-blue" data-pct="88"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-d2">
+        <div class="sk-head">
+          <div class="sk-icon ski-orange">🔐</div>
+          <div class="sk-name">Network &amp; Security</div>
+        </div>
+        <div class="sk-items">
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">FortiGate Firewall</span><span class="sk-pct">80%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-orange" data-pct="80"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Fortinet VPN</span><span class="sk-pct">78%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-orange" data-pct="78"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Zscaler API</span><span class="sk-pct">72%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-orange" data-pct="72"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Network Monitoring</span><span class="sk-pct">75%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-orange" data-pct="75"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Linux / Server Admin</span><span class="sk-pct">70%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-orange" data-pct="70"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Security Policy Config</span><span class="sk-pct">73%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-orange" data-pct="73"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-d3">
+        <div class="sk-head">
+          <div class="sk-icon ski-dark">📋</div>
+          <div class="sk-name">Product &amp; Management</div>
+        </div>
+        <div class="sk-items">
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Product Strategy</span><span class="sk-pct">80%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-dark" data-pct="80"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Agile / Sprint Management</span><span class="sk-pct">85%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-dark" data-pct="85"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Team &amp; Stakeholder Mgmt</span><span class="sk-pct">82%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-dark" data-pct="82"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Budget Management</span><span class="sk-pct">75%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-dark" data-pct="75"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Roadmapping / Backlog</span><span class="sk-pct">78%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-dark" data-pct="78"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-row"><span class="sk-label">Feature Prioritization</span><span class="sk-pct">80%</span></div>
+            <div class="sk-bar"><div class="sk-fill skf-dark" data-pct="80"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── PROJECTS ─── -->
+<section class="sec sec-light" id="projects">
+  <div class="sec-inner">
+    <div class="sec-top reveal">
+      <p class="sec-eyebrow ey-orange">Selected Work</p>
+      <h2 class="sec-title title-dark">Projects</h2>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card reveal reveal-d1">
+        <div class="proj-card-top">
+          <div class="proj-icon2 pig">🛡️</div>
+          <span class="proj-badge2 pb-orange">Insurance</span>
+        </div>
+        <div class="proj-sub2">Insurance Platform</div>
+        <h3 class="proj-title2">KaroInsure</h3>
+        <p class="proj-desc2">End-to-end insurance management system covering policy issuance, renewals, claims workflow, and customer onboarding for a growing insurance platform.</p>
+        <div class="proj-tags2">
+          <span class="ptag2">Full Stack</span><span class="ptag2">API Integration</span><span class="ptag2">Dashboard</span>
+        </div>
+        <a href="https://karoinsure.com" class="proj-link2" target="_blank">karoinsure.com ↗</a>
+      </div>
+
+      <div class="proj-card reveal reveal-d2">
+        <div class="proj-card-top">
+          <div class="proj-icon2 pib">💼</div>
+          <span class="proj-badge2 pb-blue">B2C Broking</span>
+        </div>
+        <div class="proj-sub2">Insurance Broking System</div>
+        <h3 class="proj-title2">HeroFinCorp</h3>
+        <p class="proj-desc2">B2C insurance broking platform enabling customers to compare, purchase, and manage policies with a complete broker dashboard and policy management.</p>
+        <div class="proj-tags2">
+          <span class="ptag2">B2C</span><span class="ptag2">Broking</span><span class="ptag2">Dashboard</span>
+        </div>
+        <a href="https://herofincorp.com" class="proj-link2" target="_blank">herofincorp.com ↗</a>
+      </div>
+
+      <div class="proj-card reveal reveal-d3">
+        <div class="proj-card-top">
+          <div class="proj-icon2 pip">⚡</div>
+          <span class="proj-badge2 pb-dark">Insurtech</span>
+        </div>
+        <div class="proj-sub2">Insurance Product</div>
+        <h3 class="proj-title2">Fynity Insurance</h3>
+        <p class="proj-desc2">Drove product strategy, feature prioritization, and sprint-based enhancement planning. Delivered iterative product upgrades aligned to business goals.</p>
+        <div class="proj-tags2">
+          <span class="ptag2">Product</span><span class="ptag2">Sprints</span><span class="ptag2">Roadmap</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-d1">
+        <div class="proj-card-top">
+          <div class="proj-icon2 pib">📦</div>
+          <span class="proj-badge2 pb-blue">Internal Tool</span>
+        </div>
+        <div class="proj-sub2">Asset Tracking</div>
+        <h3 class="proj-title2">Asset Management System</h3>
+        <p class="proj-desc2">Full-stack system to track organizational hardware and software assets — lifecycle management, assignment logs, and inventory reporting built on MERN stack.</p>
+        <div class="proj-tags2">
+          <span class="ptag2">MERN</span><span class="ptag2">Full Stack</span><span class="ptag2">Reporting</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-d2">
+        <div class="proj-card-top">
+          <div class="proj-icon2 pig">🏢</div>
+          <span class="proj-badge2 pb-orange">ERP</span>
+        </div>
+        <div class="proj-sub2">ERP Implementation</div>
+        <h3 class="proj-title2">ERP Site</h3>
+        <p class="proj-desc2">Deployed and customized ERPNext covering inventory, HR, accounting, and procurement modules with tailored workflows and third-party integrations.</p>
+        <div class="proj-tags2">
+          <span class="ptag2">ERPNext</span><span class="ptag2">Django</span><span class="ptag2">Business Ops</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-d3">
+        <div class="proj-card-top">
+          <div class="proj-icon2 pip">🔐</div>
+          <span class="proj-badge2 pb-dark">Security</span>
+        </div>
+        <div class="proj-sub2">Security Dashboard</div>
+        <h3 class="proj-title2">Zscaler API Dashboard</h3>
+        <p class="proj-desc2">Centralized security monitoring dashboard built on Zscaler API integration — visualizing traffic analytics, policy compliance, and real-time threat alerts.</p>
+        <div class="proj-tags2">
+          <span class="ptag2">Zscaler API</span><span class="ptag2">Security</span><span class="ptag2">Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="sec sec-dark" id="contact">
+  <div class="sec-inner">
+    <div class="contact-split">
+      <div class="reveal">
+        <p class="cl-eyebrow">Contact</p>
+        <h2 class="cl-title">Let's build something<br><em>great</em> together.</h2>
+        <p class="cl-desc">Open to full-time roles, contract work, or freelance projects in Navi Mumbai or remote. Whether you need an engineer, project manager, or product manager — reach out.</p>
+        <div class="c-items">
+          <a href="mailto:prathameshmestry23502@gmail.com" class="c-item">
+            <div class="c-item-icon">✉️</div>
+            prathameshmestry23502@gmail.com
+          </a>
+          <a href="www.linkedin.com/in/pmestry-a8a196222" class="c-item" target="_blank">
+            <div class="c-item-icon">💼</div>
+            linkedin.com/in/prathamesh-mestry
+          </a>
+          <div class="c-item" style="cursor:default;">
+            <div class="c-item-icon">📍</div>
+            Navi Mumbai, Maharashtra, India
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="form-wrap">
+          <div class="form-title">Send a Message</div>
+          <div class="form-grid">
+            <div class="form-row2">
+              <div class="fg"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
+              <div class="fg"><label>Email</label><input type="email" placeholder="john@company.com"></div>
+            </div>
+            <div class="fg"><label>Subject</label><input type="text" placeholder="Job opportunity / Project inquiry"></div>
+            <div class="fg"><label>Message</label><textarea placeholder="Tell me about the role or project..."></textarea></div>
+            <button class="btn-orange" style="width:100%;text-align:center;padding:14px;font-size:15px;"
+              onclick="const s=document.querySelector('input[placeholder=\'Job opportunity / Project inquiry\']').value;const b=document.querySelector('textarea').value;window.location.href='mailto:prathameshmestry23502@gmail.com?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b)">
+              Send Message →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-mark">P</div>
+      <span class="footer-name">© 2026 Prathamesh Mestry · Navi Mumbai</span>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:prathameshmestry23502@gmail.com">prathameshmestry23502@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function openMenu()  { document.getElementById('mobMenu').classList.add('open'); }
+  function closeMenu() { document.getElementById('mobMenu').classList.remove('open'); }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('.sk-fill').forEach(b => { b.style.width = b.dataset.pct + '%'; });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Active nav link highlight
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--orange)' : '';
+    });
+  });
+</script>
+</body>
+</html>
